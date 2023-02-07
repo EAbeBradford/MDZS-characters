@@ -20,6 +20,17 @@ let CharService = class CharService {
     constructor(charModel) {
         this.charModel = charModel;
     }
+    async getAllChars() {
+        const chars = await this.charModel.find().exec();
+        return chars.map(c => ({ id: c.id,
+            birthName: c.birthName,
+            courtesyName: c.courtesyName,
+            title: c.title,
+            sect: c.sect,
+            weapon: c.weapon,
+            picture: c.picture
+        }));
+    }
 };
 CharService = __decorate([
     (0, common_1.Injectable)(),

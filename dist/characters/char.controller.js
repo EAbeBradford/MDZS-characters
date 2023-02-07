@@ -16,7 +16,17 @@ let CharController = class CharController {
     constructor(charsService) {
         this.charsService = charsService;
     }
+    async getAllProducts() {
+        const chars = await this.charsService.getAllChars();
+        return chars;
+    }
 };
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], CharController.prototype, "getAllProducts", null);
 CharController = __decorate([
     (0, common_1.Controller)('characters'),
     __metadata("design:paramtypes", [char_service_1.CharService])

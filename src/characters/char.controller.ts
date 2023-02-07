@@ -5,4 +5,9 @@ import { CharService } from './char.service';
 export class CharController {
     constructor(private readonly charsService: CharService) { }
     
+    @Get()
+    async getAllProducts() {
+        const chars = await this.charsService.getAllChars();
+        return chars;
+    }
 }
