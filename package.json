@@ -24,7 +24,11 @@
     "@nestjs/core": "^9.0.0",
     "@nestjs/mongoose": "^9.2.1",
     "@nestjs/platform-express": "^9.0.0",
+<<<<<<< HEAD
     "mongoose": "^6.9.1",
+=======
+    "mongoose": "^6.9.0",
+>>>>>>> d338150eaf036bb350bb847cfc675f55a4086987
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
   },
