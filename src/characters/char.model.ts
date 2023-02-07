@@ -15,8 +15,8 @@ export interface Char extends mongoose.Document {
     birthName: string,
     courtesyName: string,
     title: string,
-        sect: string,
-        weapon: Array<string>, 
-        picture: string,
+    sect: string,
+    weapon: Array<string>, 
+    picture: string,
 
 }

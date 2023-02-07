@@ -34,7 +34,6 @@ let CharService = class CharService {
     async insertChar(birthName, courtesyName, title, sect, weapon, picture) {
         const newChar = new this.charModel({ birthName: birthName, courtesyName: courtesyName, title: title, sect: sect, weapon: weapon, picture: picture });
         const result = await newChar.save();
-        console.log(result);
         return result.id;
     }
     async getCharById(charId) {
@@ -66,6 +65,12 @@ let CharService = class CharService {
             updatedChar.picture = picture;
         }
         updatedChar.save();
+    }
+    async deleteCharById(charId) {
+        const result = await this.charModel.deleteOne({ _id: charId }).exec();
+        if (result.deletedCount === 0) {
+            throw new common_1.NotFoundException('product does not exist');
+        }
     }
     async findChar(charId) {
         let char;

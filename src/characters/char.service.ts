@@ -25,7 +25,7 @@ export class CharService {
     async insertChar(birthName: string, courtesyName: string, title:string, sect: string, weapon: Array<string>, picture:string) {
         const newChar = new this.charModel({ birthName: birthName, courtesyName:courtesyName, title:title, sect:sect, weapon:weapon, picture:picture });
         const result = await newChar.save();
-        console.log(result);
+       // console.log(result);
         return result.id as string;
     }
 
@@ -61,6 +61,14 @@ export class CharService {
         }
         updatedChar.save();
         // this.products[index] = updatedProduct;
+    }
+
+    async deleteCharById(charId: string) {
+        const result = await this.charModel.deleteOne({ _id: charId }).exec();
+        if (result.deletedCount === 0) {
+            throw new NotFoundException('product does not exist');
+        }
+
     }
 
     private async findChar(charId: string): Promise<Char> {

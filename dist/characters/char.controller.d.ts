@@ -23,4 +23,5 @@ export declare class CharController {
         picture: string;
     }>;
     updateCharById(charId: string, charBirthName: string, charCourtesyName: string, charTitle: string, charSect: string, charWeapon: Array<string>, charPicture: string): Promise<any>;
+    deleteCharById(charId: string): Promise<any>;
 }

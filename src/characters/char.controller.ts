@@ -45,4 +45,10 @@ export class CharController {
         await this.charsService.updateCharById(charId, charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture);
         return null;
     }
+
+    @Delete(':id')
+    async deleteCharById(@Param('id') charId: string,) {
+        await this.charsService.deleteCharById(charId);
+        return null;
+    }
 }
