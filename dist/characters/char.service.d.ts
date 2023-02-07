@@ -12,4 +12,5 @@ export declare class CharService {
         weapon: string[];
         picture: string;
     }[]>;
+    insertChar(birthName: string, courtesyName: string, title: string, sect: string, weapon: Array<string>, picture: string): Promise<string>;
 }

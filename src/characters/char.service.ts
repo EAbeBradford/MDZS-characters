@@ -22,4 +22,11 @@ export class CharService {
         }));
     }
 
+    async insertChar(birthName: string, courtesyName: string, title:string, sect: string, weapon: Array<string>, picture:string) {
+        const newChar = new this.charModel({ birthName: birthName, courtesyName:courtesyName, title:title, sect:sect, weapon:weapon, picture:picture });
+        const result = await newChar.save();
+        console.log(result);
+        return result.id as string;
+    }
+
 }

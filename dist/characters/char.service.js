@@ -31,6 +31,12 @@ let CharService = class CharService {
             picture: c.picture
         }));
     }
+    async insertChar(birthName, courtesyName, title, sect, weapon, picture) {
+        const newChar = new this.charModel({ birthName: birthName, courtesyName: courtesyName, title: title, sect: sect, weapon: weapon, picture: picture });
+        const result = await newChar.save();
+        console.log(result);
+        return result.id;
+    }
 };
 CharService = __decorate([
     (0, common_1.Injectable)(),

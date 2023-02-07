@@ -2,7 +2,7 @@ import { CharService } from './char.service';
 export declare class CharController {
     private readonly charsService;
     constructor(charsService: CharService);
-    getAllProducts(): Promise<{
+    getAllChars(): Promise<{
         id: string;
         birthName: string;
         courtesyName: string;
@@ -11,4 +11,7 @@ export declare class CharController {
         weapon: string[];
         picture: string;
     }[]>;
+    addProduct(charBirthName: string, charCourtesyName: string, charTitle: string, charSect: string, charWeapon: Array<string>, charPicture: string): Promise<{
+        id: string;
+    }>;
 }

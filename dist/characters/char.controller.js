@@ -8,6 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CharController = void 0;
 const common_1 = require("@nestjs/common");
@@ -16,9 +19,13 @@ let CharController = class CharController {
     constructor(charsService) {
         this.charsService = charsService;
     }
-    async getAllProducts() {
+    async getAllChars() {
         const chars = await this.charsService.getAllChars();
         return chars;
+    }
+    async addProduct(charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture) {
+        const generatedId = await this.charsService.insertChar(charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture);
+        return { id: generatedId };
     }
 };
 __decorate([
@@ -26,7 +33,19 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], CharController.prototype, "getAllProducts", null);
+], CharController.prototype, "getAllChars", null);
+__decorate([
+    (0, common_1.Post)(),
+    __param(0, (0, common_1.Body)('birthName')),
+    __param(1, (0, common_1.Body)('courtesyName')),
+    __param(2, (0, common_1.Body)('title')),
+    __param(3, (0, common_1.Body)('sect')),
+    __param(4, (0, common_1.Body)('weapon')),
+    __param(5, (0, common_1.Body)('picture')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String, String, Array, String]),
+    __metadata("design:returntype", Promise)
+], CharController.prototype, "addProduct", null);
 CharController = __decorate([
     (0, common_1.Controller)('characters'),
     __metadata("design:paramtypes", [char_service_1.CharService])
