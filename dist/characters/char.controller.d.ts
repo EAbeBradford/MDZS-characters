@@ -22,4 +22,5 @@ export declare class CharController {
         weapon: string[];
         picture: string;
     }>;
+    updateCharById(charId: string, charBirthName: string, charCourtesyName: string, charTitle: string, charSect: string, charWeapon: Array<string>, charPicture: string): Promise<any>;
 }

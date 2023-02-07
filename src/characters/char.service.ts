@@ -34,6 +34,35 @@ export class CharService {
         return { birthName: char.birthName, courtesyName:char.courtesyName, title: char.title, sect: char.sect, weapon: char.weapon, picture: char.picture };
     }
 
+    async updateCharById(charId: string, birthName: string, courtesyName: string, title:string, sect: string, weapon: Array<string>, picture:string) {
+        const updatedChar = await this.findChar(charId);
+
+        if (birthName) {
+            updatedChar.birthName = birthName;
+        }
+        if (courtesyName) {
+            updatedChar.courtesyName = courtesyName;
+        }
+        if (title) {
+            updatedChar.title = title;
+        }
+        if (sect) {
+            updatedChar.sect = sect;
+        }
+        if (weapon) {
+            weapon.forEach(e => {
+                if (e && updatedChar.weapon.indexOf(e) == -1) {
+                    updatedChar.weapon.push(e);
+                }
+            });
+        }
+        if (picture) {
+            updatedChar.picture = picture;
+        }
+        updatedChar.save();
+        // this.products[index] = updatedProduct;
+    }
+
     private async findChar(charId: string): Promise<Char> {
         let char;
         try {

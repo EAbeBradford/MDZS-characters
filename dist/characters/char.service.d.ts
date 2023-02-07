@@ -21,5 +21,6 @@ export declare class CharService {
         weapon: string[];
         picture: string;
     }>;
+    updateCharById(charId: string, birthName: string, courtesyName: string, title: string, sect: string, weapon: Array<string>, picture: string): Promise<void>;
     private findChar;
 }

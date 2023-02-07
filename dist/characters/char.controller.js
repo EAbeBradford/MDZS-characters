@@ -31,6 +31,10 @@ let CharController = class CharController {
         const char = await this.charsService.getCharById(charId);
         return char;
     }
+    async updateCharById(charId, charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture) {
+        await this.charsService.updateCharById(charId, charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture);
+        return null;
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -57,6 +61,19 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], CharController.prototype, "getCharById", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)('birthName')),
+    __param(2, (0, common_1.Body)('courtesyName')),
+    __param(3, (0, common_1.Body)('title')),
+    __param(4, (0, common_1.Body)('sect')),
+    __param(5, (0, common_1.Body)('weapon')),
+    __param(6, (0, common_1.Body)('picture')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String, String, String, String, Array, String]),
+    __metadata("design:returntype", Promise)
+], CharController.prototype, "updateCharById", null);
 CharController = __decorate([
     (0, common_1.Controller)('characters'),
     __metadata("design:paramtypes", [char_service_1.CharService])

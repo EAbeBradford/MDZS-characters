@@ -31,4 +31,18 @@ export class CharController {
     
         return char;
     }
+
+    @Patch(':id')
+    async updateCharById(
+        @Param('id') charId: string,
+        @Body('birthName') charBirthName: string, 
+        @Body('courtesyName') charCourtesyName: string, 
+        @Body('title') charTitle: string,
+        @Body('sect') charSect: string, 
+        @Body('weapon') charWeapon: Array<string>, 
+        @Body('picture') charPicture: string,
+    ) {
+        await this.charsService.updateCharById(charId, charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture);
+        return null;
+    }
 }

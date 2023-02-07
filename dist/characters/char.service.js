@@ -41,6 +41,32 @@ let CharService = class CharService {
         const char = await (await this.findChar(charId));
         return { birthName: char.birthName, courtesyName: char.courtesyName, title: char.title, sect: char.sect, weapon: char.weapon, picture: char.picture };
     }
+    async updateCharById(charId, birthName, courtesyName, title, sect, weapon, picture) {
+        const updatedChar = await this.findChar(charId);
+        if (birthName) {
+            updatedChar.birthName = birthName;
+        }
+        if (courtesyName) {
+            updatedChar.courtesyName = courtesyName;
+        }
+        if (title) {
+            updatedChar.title = title;
+        }
+        if (sect) {
+            updatedChar.sect = sect;
+        }
+        if (weapon) {
+            weapon.forEach(e => {
+                if (e && updatedChar.weapon.indexOf(e) == -1) {
+                    updatedChar.weapon.push(e);
+                }
+            });
+        }
+        if (picture) {
+            updatedChar.picture = picture;
+        }
+        updatedChar.save();
+    }
     async findChar(charId) {
         let char;
         try {
