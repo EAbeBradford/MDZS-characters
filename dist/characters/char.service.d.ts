@@ -13,4 +13,13 @@ export declare class CharService {
         picture: string;
     }[]>;
     insertChar(birthName: string, courtesyName: string, title: string, sect: string, weapon: Array<string>, picture: string): Promise<string>;
+    getCharById(charId: string): Promise<{
+        birthName: string;
+        courtesyName: string;
+        title: string;
+        sect: string;
+        weapon: string[];
+        picture: string;
+    }>;
+    private findChar;
 }

@@ -24,4 +24,11 @@ export class CharController {
         const generatedId = await this.charsService.insertChar(charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture);
         return { id: generatedId };
     }
+
+    @Get(':id')
+    async getCharById(@Param('id') charId: string,) {
+        const char  = await this.charsService.getCharById(charId);
+    
+        return char;
+    }
 }

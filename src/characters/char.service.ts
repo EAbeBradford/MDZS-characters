@@ -29,4 +29,23 @@ export class CharService {
         return result.id as string;
     }
 
+    async getCharById(charId: string) {
+        const char = await (await this.findChar(charId));
+        return { birthName: char.birthName, courtesyName:char.courtesyName, title: char.title, sect: char.sect, weapon: char.weapon, picture: char.picture };
+    }
+
+    private async findChar(charId: string): Promise<Char> {
+        let char;
+        try {
+            char = await this.charModel.findById(charId)
+
+        } catch (error) {
+            throw new NotFoundException('product does not exist');
+
+        }
+        if (!char) {
+            throw new NotFoundException('product does not exist');
+        }
+        return char;
+    }
 }

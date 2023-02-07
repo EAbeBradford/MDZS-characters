@@ -37,6 +37,23 @@ let CharService = class CharService {
         console.log(result);
         return result.id;
     }
+    async getCharById(charId) {
+        const char = await (await this.findChar(charId));
+        return { birthName: char.birthName, courtesyName: char.courtesyName, title: char.title, sect: char.sect, weapon: char.weapon, picture: char.picture };
+    }
+    async findChar(charId) {
+        let char;
+        try {
+            char = await this.charModel.findById(charId);
+        }
+        catch (error) {
+            throw new common_1.NotFoundException('product does not exist');
+        }
+        if (!char) {
+            throw new common_1.NotFoundException('product does not exist');
+        }
+        return char;
+    }
 };
 CharService = __decorate([
     (0, common_1.Injectable)(),

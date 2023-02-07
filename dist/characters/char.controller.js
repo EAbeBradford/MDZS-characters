@@ -27,6 +27,10 @@ let CharController = class CharController {
         const generatedId = await this.charsService.insertChar(charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture);
         return { id: generatedId };
     }
+    async getCharById(charId) {
+        const char = await this.charsService.getCharById(charId);
+        return char;
+    }
 };
 __decorate([
     (0, common_1.Get)(),
@@ -46,6 +50,13 @@ __decorate([
     __metadata("design:paramtypes", [String, String, String, String, Array, String]),
     __metadata("design:returntype", Promise)
 ], CharController.prototype, "addProduct", null);
+__decorate([
+    (0, common_1.Get)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], CharController.prototype, "getCharById", null);
 CharController = __decorate([
     (0, common_1.Controller)('characters'),
     __metadata("design:paramtypes", [char_service_1.CharService])
