@@ -1,7 +1,7 @@
 import * as mongoose from 'mongoose';
 export declare const CharSchema: mongoose.Schema<any, mongoose.Model<any, any, any, any, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, {
-    birthName: string;
     picture: string;
+    birthName?: string;
     courtesyName?: string;
     title?: string;
     sect?: string;

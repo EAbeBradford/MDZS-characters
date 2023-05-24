@@ -12,11 +12,12 @@ const char_controller_1 = require("./char.controller");
 const char_service_1 = require("./char.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const char_model_1 = require("./char.model");
+const location_modle_1 = require("../Locations/location.modle");
 let CharModule = class CharModule {
 };
 CharModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Char', schema: char_model_1.CharSchema }])],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Char', schema: char_model_1.CharSchema }]), mongoose_1.MongooseModule.forFeature([{ name: 'Location', schema: location_modle_1.LocationSchema }])],
         controllers: [char_controller_1.CharController],
         providers: [char_service_1.CharService]
     })

@@ -11,7 +11,7 @@ export declare class CharController {
         weapon: string[];
         picture: string;
     }[]>;
-    addProduct(charBirthName: string, charCourtesyName: string, charTitle: string, charSect: string, charWeapon: Array<string>, charPicture: string): Promise<{
+    addChar(charBirthName: string, charCourtesyName: string, charTitle: string, charSect: string, charWeapon: Array<string>, charPicture: string): Promise<{
         id: string;
     }>;
     getCharById(charId: string): Promise<{
@@ -24,4 +24,13 @@ export declare class CharController {
     }>;
     updateCharById(charId: string, charBirthName: string, charCourtesyName: string, charTitle: string, charSect: string, charWeapon: Array<string>, charPicture: string): Promise<any>;
     deleteCharById(charId: string): Promise<any>;
+    getAllGusu(): Promise<{
+        id: string;
+        birthName: string;
+        courtesyName: string;
+        title: string;
+        sect: string;
+        weapon: string[];
+        picture: string;
+    }[]>;
 }

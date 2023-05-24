@@ -8,10 +8,40 @@ import { title } from 'process';
 @Injectable()
 export class CharService {
 
-    constructor(@InjectModel('Char') private readonly charModel: Model<Char>) { }
+    constructor(@InjectModel('Char') private readonly charModel: Model<Char>, @InjectModel('Location') private readonly locationModel: Model<Location>,) { }
+
+    async getAllGusu(){
+        const chars = await this.charModel.find().exec();
+        const gusu = chars.filter((e)=> e.sect === "Gusu Lan");
+        return gusu.map(c => ({ id: c.id, 
+            birthName: c.birthName,
+            courtesyName: c.courtesyName,
+            title: c.title,
+            sect: c.sect,
+            weapon: c.weapon, 
+            picture: c.picture 
+        }));
+    }
+
+    async getbyName(birthname: string){
+        const chars = await this.charModel.find().exec();
+
+        const name = chars.filter((e)=> e.birthName === birthname);
+        return name.map(c => ({ id: c.id, 
+            birthName: c.birthName,
+            courtesyName: c.courtesyName,
+            title: c.title,
+            sect: c.sect,
+            weapon: c.weapon, 
+            picture: c.picture 
+        }));
+
+    }
 
     async getAllChars() {
         const chars = await this.charModel.find().exec();
+
+    
         return chars.map(c => ({ id: c.id, 
             birthName: c.birthName,
             courtesyName: c.courtesyName,
@@ -66,7 +96,7 @@ export class CharService {
     async deleteCharById(charId: string) {
         const result = await this.charModel.deleteOne({ _id: charId }).exec();
         if (result.deletedCount === 0) {
-            throw new NotFoundException('product does not exist');
+            throw new NotFoundException('Charater does not exist');
         }
 
     }
@@ -77,11 +107,11 @@ export class CharService {
             char = await this.charModel.findById(charId)
 
         } catch (error) {
-            throw new NotFoundException('product does not exist');
+            throw new NotFoundException('Charater does not exist');
 
         }
         if (!char) {
-            throw new NotFoundException('product does not exist');
+            throw new NotFoundException('Charater does not exist');
         }
         return char;
     }

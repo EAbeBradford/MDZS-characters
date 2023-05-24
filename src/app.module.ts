@@ -5,8 +5,12 @@ import { CharModule } from './characters/char.module';
 
 import { MongooseModule } from '@nestjs/mongoose';
 
+require('dotenv').config();
+
+
 @Module({
-  imports: [CharModule, MongooseModule.forRoot('mongodb+srv://bradford:bradford@cluster0.xj5lqs3.mongodb.net/test')],
+  imports: [CharModule, 
+    MongooseModule.forRoot(process.env.MONGODB_URI)],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -12,11 +12,13 @@ const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const char_module_1 = require("./characters/char.module");
 const mongoose_1 = require("@nestjs/mongoose");
+require('dotenv').config();
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [char_module_1.CharModule, mongoose_1.MongooseModule.forRoot('mongodb+srv://bradford:bradford@cluster0.xj5lqs3.mongodb.net/test')],
+        imports: [char_module_1.CharModule,
+            mongoose_1.MongooseModule.forRoot(process.env.MONGODB_URI)],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

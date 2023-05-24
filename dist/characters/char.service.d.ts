@@ -2,7 +2,26 @@ import { Char } from './char.model';
 import { Model } from 'mongoose';
 export declare class CharService {
     private readonly charModel;
-    constructor(charModel: Model<Char>);
+    private readonly locationModel;
+    constructor(charModel: Model<Char>, locationModel: Model<Location>);
+    getAllGusu(): Promise<{
+        id: string;
+        birthName: string;
+        courtesyName: string;
+        title: string;
+        sect: string;
+        weapon: string[];
+        picture: string;
+    }[]>;
+    getbyName(birthname: string): Promise<{
+        id: string;
+        birthName: string;
+        courtesyName: string;
+        title: string;
+        sect: string;
+        weapon: string[];
+        picture: string;
+    }[]>;
     getAllChars(): Promise<{
         id: string;
         birthName: string;

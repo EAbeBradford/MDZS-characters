@@ -12,7 +12,7 @@ export class CharController {
     }
 
     @Post()
-    async addProduct(
+    async addChar(
         @Body('birthName') charBirthName: string, 
         @Body('courtesyName') charCourtesyName: string, 
         @Body('title') charTitle: string,
@@ -24,7 +24,8 @@ export class CharController {
         const generatedId = await this.charsService.insertChar(charBirthName, charCourtesyName, charTitle, charSect, charWeapon, charPicture);
         return { id: generatedId };
     }
-
+    
+    
     @Get(':id')
     async getCharById(@Param('id') charId: string,) {
         const char  = await this.charsService.getCharById(charId);
@@ -51,4 +52,11 @@ export class CharController {
         await this.charsService.deleteCharById(charId);
         return null;
     }
+    
+    @Get('sect/gusu')
+    async getAllGusu(){
+        const chars = await this.charsService.getAllGusu();
+        return chars;
+    }
+   
 }

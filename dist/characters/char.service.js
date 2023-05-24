@@ -17,8 +17,33 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 let CharService = class CharService {
-    constructor(charModel) {
+    constructor(charModel, locationModel) {
         this.charModel = charModel;
+        this.locationModel = locationModel;
+    }
+    async getAllGusu() {
+        const chars = await this.charModel.find().exec();
+        const gusu = chars.filter((e) => e.sect === "Gusu Lan");
+        return gusu.map(c => ({ id: c.id,
+            birthName: c.birthName,
+            courtesyName: c.courtesyName,
+            title: c.title,
+            sect: c.sect,
+            weapon: c.weapon,
+            picture: c.picture
+        }));
+    }
+    async getbyName(birthname) {
+        const chars = await this.charModel.find().exec();
+        const name = chars.filter((e) => e.birthName === birthname);
+        return name.map(c => ({ id: c.id,
+            birthName: c.birthName,
+            courtesyName: c.courtesyName,
+            title: c.title,
+            sect: c.sect,
+            weapon: c.weapon,
+            picture: c.picture
+        }));
     }
     async getAllChars() {
         const chars = await this.charModel.find().exec();
@@ -69,7 +94,7 @@ let CharService = class CharService {
     async deleteCharById(charId) {
         const result = await this.charModel.deleteOne({ _id: charId }).exec();
         if (result.deletedCount === 0) {
-            throw new common_1.NotFoundException('product does not exist');
+            throw new common_1.NotFoundException('Charater does not exist');
         }
     }
     async findChar(charId) {
@@ -78,10 +103,10 @@ let CharService = class CharService {
             char = await this.charModel.findById(charId);
         }
         catch (error) {
-            throw new common_1.NotFoundException('product does not exist');
+            throw new common_1.NotFoundException('Charater does not exist');
         }
         if (!char) {
-            throw new common_1.NotFoundException('product does not exist');
+            throw new common_1.NotFoundException('Charater does not exist');
         }
         return char;
     }
@@ -89,7 +114,8 @@ let CharService = class CharService {
 CharService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)('Char')),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __param(1, (0, mongoose_1.InjectModel)('Location')),
+    __metadata("design:paramtypes", [mongoose_2.Model, mongoose_2.Model])
 ], CharService);
 exports.CharService = CharService;
 //# sourceMappingURL=char.service.js.map
